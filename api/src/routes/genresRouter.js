@@ -1,9 +1,8 @@
 const {Router} = require('express');
 const genresRouter = Router();
+const {getGenresHandler}= require('../handlers/genresHandlers.js')
 
 /* genresRouter.use('') */
-genresRouter.use('/', (req,res)=>{
-    res.status(200).send('Obtiene un arreglo con todos los géneros existentes de la API')
-})
+genresRouter.get('/', getGenresHandler);
 
 module.exports= genresRouter;
