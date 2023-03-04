@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    released_at: {
+    released: {
       type: DataTypes.DATE,
       allowNull: false,
     },
@@ -34,6 +34,10 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    created: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    }
   },
     { timestamps: false }
   );

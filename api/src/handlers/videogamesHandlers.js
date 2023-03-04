@@ -1,9 +1,14 @@
-const { createVideogame, getVideogameById } = require('../controllers/videogamesControllers.js');
+const { createVideogame, getVideogameById, getVideogameByName, getAllVideogames } = require('../controllers/videogamesControllers.js');
 
-const getVideogamesHandler = (req, res) => {
+const getVideogamesHandler = async (req, res) => {
     const { name } = req.query
-    if (name) res.status(200).send(`Ruta que trae los primeros 15 videojuegos que se encuentren con el name ${name}`)
-    else res.status(200).send('Ruta que trae los videojuegos');
+    try{
+    const results= name? await getVideogameByName(name): await getAllVideogames();
+    /* console.log(results) */
+    res.status(200).json(results);}
+    catch(error){
+        res.status(400).send(error.message)
+    }
 }
 
 const getVideogameHandler = async (req, res) => {
@@ -16,11 +21,12 @@ const getVideogameHandler = async (req, res) => {
             res.status(400).send({error : error.message})
         }
 }
+//Qué propiedades necesito? Cómo incluyo los datos del género?
 
 const postVideogameHandler = async (req, res) => {
-    const { id, name, description, platforms, background_image, released_at, rating } = req.body
+    const { id, name, description, platforms, background_image, released, rating, genre } = req.body
     try {
-        const newVideogame = await createVideogame(id, name, description, platforms, background_image, released_at, rating)
+        const newVideogame = await createVideogame(id, name, description, platforms, background_image, released, rating, genre)
         res.status(200).json(newVideogame)
     } catch (error) {
         res.status(400).send({error : error.message})
