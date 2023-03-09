@@ -1,7 +1,8 @@
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import { createVideogame } from '../../redux/actions';
+import axios from 'axios';
+/* import {useDispatch} from 'react-redux'; */
+/* import { createVideogame } from '../../redux/actions'; */
 
 const Form = () => {
     const [form, setForm] = useState({
@@ -32,11 +33,12 @@ if (/^(https:|http:|www\.)\S*/.test(form.background_image)){
 }
 else console.log('La url es incorrecta')
 }
-const dispatch = useDispatch();
+/* const dispatch = useDispatch(); */
 
 const handleSubmit = (e) => {
 e.preventDefault();
-dispatch(createVideogame(form))
+axios.post('http://localhost:3001/videogames', form)
+.then(res=>alert(res))
 }
 
     return (

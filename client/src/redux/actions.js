@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const GET_VIDEOGAMES= 'GET_VIDEOGAMES'
-export const GET_VIDEOGAME_BY_ID = 'GET_VIDEOGAME_BY_ID'
-export const ADD_VIDEOGAME = 'CREATE_VIDEOGAME'
+/* export const GET_VIDEOGAME_BY_ID = 'GET_VIDEOGAME_BY_ID'
+export const ADD_VIDEOGAME = 'CREATE_VIDEOGAME' */
 
 export const getVideogames= ()=>{
     return async function (dispatch) {
@@ -37,7 +37,7 @@ export const getVideogames= ()=>{
     }
 } */
 
-export const createVideogame = (videogame) => {
+/* export const createVideogame = (videogame) => {
     return async function (dispatch) {
         try {
            const response = await axios.post('http://localhost:3001/videogames', videogame)
@@ -51,4 +51,4 @@ export const createVideogame = (videogame) => {
             console.log(error)
         }
     }
-}
+} */

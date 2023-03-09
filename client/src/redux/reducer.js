@@ -9,11 +9,11 @@ function reducer(state = initialState, action) {
                 ...state,
                 videogames: action.payload,
             };
-        case ADD_VIDEOGAME:
+        /* case ADD_VIDEOGAME:
             return {
                 ...state,
                 videogames: [...state.videogames, action.payload]
-            };
+            }; */
         default:
             return { ...state }
     }

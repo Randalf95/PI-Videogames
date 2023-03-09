@@ -27,7 +27,7 @@ const postVideogameHandler = async (req, res) => {
     const { id, name, description, platforms, background_image, released, rating, genre } = req.body
     try {
         const newVideogame = await createVideogame(id, name, description, platforms, background_image, released, rating, genre)
-        res.status(200).json(newVideogame)
+        res.status(200).send('Videogame created succesfully')
     } catch (error) {
         res.status(400).send({error : error.message})
     }
