@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     released: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     rating: {
@@ -39,6 +39,6 @@ module.exports = (sequelize) => {
       defaultValue: true,
     }
   },
-    { timestamps: false }
+  /*   { timestamps: false } */
   );
 };

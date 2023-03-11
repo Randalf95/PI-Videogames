@@ -11,7 +11,8 @@ const Form = () => {
         description:'',
         platforms:'',
         released:'',
-        rating: null
+        genre:[2],
+        rating: 5.5,
     })
     const [errors, setErrors] = useState({
         name:'',
@@ -19,6 +20,7 @@ const Form = () => {
         description:'',
         platforms:'',
         released:'',
+        genre:[],
         rating: null
     })
 
@@ -35,10 +37,11 @@ else console.log('La url es incorrecta')
 }
 /* const dispatch = useDispatch(); */
 
-const handleSubmit = (e) => {
+const handleSubmit =  (e) => {
 e.preventDefault();
-axios.post('http://localhost:3001/videogames', form)
-.then(res=>alert(res))
+
+
+ axios.post('http://localhost:3001/videogames', (form))
 }
 
     return (
@@ -64,11 +67,17 @@ axios.post('http://localhost:3001/videogames', form)
             <div>
                 <label>Released on</label>
                 <input type='text' name='released' value={form.released} onChange={onHandleChange}/>
+                <span>dd-mm-yyyy</span>
             </div>
-            <div>
+            {/* <div>
                 <label>Rating</label>
                 <input type='number' name='rating' form={form.rating} onChange={onHandleChange}/>
-            </div>
+            </div> */}
+            {/* <div>
+                <label>Genres</label>
+                <input type='text' name='genres' form={form.genres} onChange={onHandleChange}/>
+            </div> tengo el form.genres hardcodeado
+ */}
             <button type='submit'>Create Videogame</button>
             
             

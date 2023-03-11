@@ -4,16 +4,23 @@ const cleanArray = require('../utils/utils.js')
 require('dotenv').config();
 const { API_KEY } = process.env;
 
-const createVideogame = async (id, name, description, platforms, background_image, released, rating, genre) => {
-    const newVideogame = await Videogame.create({ id, name, description, platforms, background_image, released, rating });
+const createVideogame = async (name, description, platforms, background_image, released, rating, genre) => {
+    const newVideogame = await Videogame.create({name, description, platforms, background_image, released, rating });
     newVideogame.addGenres(genre)
     return newVideogame;
 }
 // Ver después cómo es lo de relacionar con sus géneros indicados.
 const getAllVideogames = async () => {
-    const videogamesApiRaw = (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`))
-        .data.results;
-    const videogamesApi = cleanArray(videogamesApiRaw);
+    const videogamesArray= [];
+    
+    for (let i = 1; i<6; i++){
+        const index=i
+        videogamesArray.push(... (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&&page=${index}`))
+        .data.results)
+    }
+    /* const videogamesApiRaw = (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`))
+        .data.results; */
+    const videogamesApi = cleanArray(videogamesArray);
     /* console.log(videogamesApi) */
     const videogamesDb = (await Videogame.findAll({ attributes: ['id', 'name', 'background_image', 'created'] ,
     include: {
@@ -48,6 +55,7 @@ const getVideogameById = async (idVideogame, source) => {
                     through: { attributes: [] }
                 }
             });
+            console.log(videogame)
     const {id, name, background_image, platforms, description, released, rating, genres}=videogame
     videogameObject={
         id,
