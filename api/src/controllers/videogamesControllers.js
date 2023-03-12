@@ -28,7 +28,7 @@ const getAllVideogames = async () => {
         attributes: ['name'], 
         through: { attributes: [] }
     }} )).map(vg => vg.dataValues)
-    console.log(videogamesDb)
+    
     const videogames = [...videogamesApi, ...videogamesDb]
     /* console.log(videogames); */
     //primeros 100
@@ -55,7 +55,7 @@ const getVideogameById = async (idVideogame, source) => {
                     through: { attributes: [] }
                 }
             });
-            console.log(videogame)
+           
     const {id, name, background_image, platforms, description, released, rating, genres}=videogame
     videogameObject={
         id,

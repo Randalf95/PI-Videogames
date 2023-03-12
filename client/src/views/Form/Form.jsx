@@ -1,10 +1,12 @@
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 import axios from 'axios';
+
 /* import {useDispatch} from 'react-redux'; */
 /* import { createVideogame } from '../../redux/actions'; */
 
 const Form = () => {
+    
     const [form, setForm] = useState({
         name:'',
         background_image:'',
@@ -20,8 +22,8 @@ const Form = () => {
         description:'',
         platforms:'',
         released:'',
-        genre:[],
-        rating: null
+        genre:'',
+        rating: '',
     })
 
 const onHandleChange = (e) => {
@@ -40,8 +42,18 @@ else console.log('La url es incorrecta')
 const handleSubmit =  (e) => {
 e.preventDefault();
 
-
  axios.post('http://localhost:3001/videogames', (form))
+ .then(res => alert(res.data))
+ .catch(err => alert(err))
+setForm({
+    name:'',
+    background_image:'',
+    description:'',
+    platforms:'',
+    released:'',
+    genre:[2],
+    rating: 5.5,
+})
 }
 
     return (
@@ -58,7 +70,7 @@ e.preventDefault();
             </div>
             <div>
                 <label>Description</label>
-                <input type='text' name='description' form={form.description} onChange={onHandleChange}/>
+                <input type='text' name='description' value={form.description} onChange={onHandleChange}/>
             </div>
             <div>
                 <label>Platforms</label>
@@ -72,7 +84,7 @@ e.preventDefault();
             {/* <div>
                 <label>Rating</label>
                 <input type='number' name='rating' form={form.rating} onChange={onHandleChange}/>
-            </div> */}
+            </div> tengo el rating hardcodeado*/}
             {/* <div>
                 <label>Genres</label>
                 <input type='text' name='genres' form={form.genres} onChange={onHandleChange}/>

@@ -35,18 +35,18 @@ const Detail = () => {
       }
       
       <h2>Released on {videogame.released}</h2>
-      {videogame.genres?.map((g) =>
+      {videogame.genres?.map((g, i) =>
 
-      (<div key={g.id}>
-        <h2>{g.name}</h2>
+      (<div key={i}>
+        <h2 >{g.name}</h2>
       </div>)
       )}
       {typeof(videogame.platforms)==='string'? 
       <h2>{videogame.platforms}</h2>:
-      videogame.platforms?.map((p) =>
+      videogame.platforms?.map((p, j) =>
 
-      (<div key={p.platform.id}>
-        <h2>{p.platform.name}</h2>
+      (<div key={j}>
+        <h2 >{p.platform.name}</h2>
       </div>)
       )}
       {/* <h2>{videogame.genres}</h2> */}

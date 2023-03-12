@@ -6,9 +6,9 @@ const Card = ({id, genres, background_image, name}) => {
         <div className={style.card}>
         <Link to={`/${id}`}>{name}</Link>
         <img src= {background_image} alt={`${name}`} width={400}/>
-        {genres?.map ((g)=>
+        {genres?.map ((g, i)=>
             
-            (<div key={g.id}>
+            (<div key= {i}>
                 <h2>{g.name}</h2>
             </div>)
 )}
