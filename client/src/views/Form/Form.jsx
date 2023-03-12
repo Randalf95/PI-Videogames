@@ -6,14 +6,13 @@ import axios from 'axios';
 /* import { createVideogame } from '../../redux/actions'; */
 
 const Form = () => {
-    
     const [form, setForm] = useState({
         name:'',
         background_image:'',
         description:'',
         platforms:'',
         released:'',
-        genre:[2],
+        genres:[2],
         rating: 5.5,
     })
     const [errors, setErrors] = useState({
@@ -22,7 +21,7 @@ const Form = () => {
         description:'',
         platforms:'',
         released:'',
-        genre:'',
+        genres:'',
         rating: '',
     })
 
@@ -51,7 +50,7 @@ setForm({
     description:'',
     platforms:'',
     released:'',
-    genre:[2],
+    genres:[2],
     rating: 5.5,
 })
 }

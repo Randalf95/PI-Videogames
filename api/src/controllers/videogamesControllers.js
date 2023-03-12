@@ -22,7 +22,7 @@ const getAllVideogames = async () => {
         .data.results; */
     const videogamesApi = cleanArray(videogamesArray);
     /* console.log(videogamesApi) */
-    const videogamesDb = (await Videogame.findAll({ attributes: ['id', 'name', 'background_image', 'created'] ,
+    const videogamesDb = (await Videogame.findAll({ attributes: ['id', 'name', 'background_image', 'rating', 'created'] ,
     include: {
         model: Genre,
         attributes: ['name'], 

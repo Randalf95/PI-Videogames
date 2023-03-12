@@ -1,6 +1,8 @@
-import { ADD_VIDEOGAME, GET_VIDEOGAMES } from './actions'
+import { ADD_VIDEOGAME, FILTER_BY_GENRE, FILTER_BY_SOURCE, GET_GENRES, GET_VIDEOGAMES, ORDER_BY_ALPHABET, ORDER_BY_RATING } from './actions'
 const initialState = {
-    videogames: []
+    videogames: [],
+    genres: [],
+    allVideogames: [],
 }
 function reducer(state = initialState, action) {
     switch (action.type) {
@@ -8,7 +10,59 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 videogames: action.payload,
+                allVideogames: action.payload,
             };
+        case GET_GENRES:
+            return {
+                ...state,
+                genres: action.payload
+            };
+        case FILTER_BY_GENRE:
+            return {
+                ...state,
+                videogames: [...state.allVideogames.filter(vg => {
+                    return vg.genres.some(genre => genre.name === action.payload)
+                })]
+            };
+        case FILTER_BY_SOURCE:
+            return {
+                ...state,
+                videogames:
+                    action.payload === 'DB' ?
+                        [...state.allVideogames.filter(vg => vg.created === true)]
+                        : [...state.allVideogames.filter(vg => vg.created === false)]
+            }
+        case ORDER_BY_ALPHABET:
+            const arrAsc= [...state.allVideogames].sort((a, b) => {
+                if (a.name < b.name) {
+                  return -1;
+                }
+                if (a.name > b.name) {
+                  return 1;
+                }
+                return 0;
+              })
+            return {
+                ...state,
+                videogames: 
+                action.payload === 'A-Z'?
+                arrAsc:arrAsc.reverse()
+            }
+        case ORDER_BY_RATING:
+            return {
+                ...state,
+                videogames:
+                action.payload === 'LOW RATING'? 
+                [...state.allVideogames].sort((a,b)=> a.rating - b.rating)
+                : [...state.allVideogames].sort((a,b) => b.rating - a.rating)
+            }
+
+
+        /* case ORDER_RATING:
+            return {
+                ...state,
+                videogamesFilter:[]
+            } */
         /* case ADD_VIDEOGAME:
             return {
                 ...state,

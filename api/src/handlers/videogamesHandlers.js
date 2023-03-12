@@ -24,11 +24,11 @@ const getVideogameHandler = async (req, res) => {
 //Qué propiedades necesito? Cómo incluyo los datos del género?
 
 const postVideogameHandler = async (req, res) => {
-    const { name, description, platforms, background_image, released, rating, genre } = req.body
-    console.log('body', req.body)
+    const { name, description, platforms, background_image, released, rating, genres } = req.body
+    /* console.log('body', req.body) */
     try {
-        const newVideogame = await createVideogame(name, description, platforms, background_image, released, rating, genre)
-        console.log('new', newVideogame)
+        const newVideogame = await createVideogame(name, description, platforms, background_image, released, rating, genres)
+        /* console.log('new', newVideogame) */
         res.status(200).send('Videogame created succesfully')
     } catch (error) {
         console.log(error.message)
