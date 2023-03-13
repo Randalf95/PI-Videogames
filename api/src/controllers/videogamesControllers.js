@@ -1,6 +1,7 @@
 const { Videogame, Genre } = require('../db.js');
 const axios = require('axios');
 const cleanArray = require('../utils/utils.js')
+const { Op } = require("sequelize");
 require('dotenv').config();
 const { API_KEY } = process.env;
 
@@ -11,6 +12,7 @@ const createVideogame = async (name, description, platforms, background_image, r
 }
 // Ver después cómo es lo de relacionar con sus géneros indicados.
 const getAllVideogames = async () => {
+
     const videogamesArray= [];
     
     for (let i = 1; i<6; i++){
@@ -36,7 +38,13 @@ const getAllVideogames = async () => {
 }
 
 const getVideogameByName = async (name) => {
-    const videogameApi = (await axios.get(`https://api.rawg.io/api/games&&search=${name}?key=${API_KEY}`)).data;
+    const videogamesDb = (await Videogame.findAll({
+        where : {
+            name:{[Op.iLike]:`%${name}%`}
+    }})).map(vg => vg.dataValues)
+    const videogamesApi = (await axios.get(`https://api.rawg.io/api/games?search=${name}&&key=${API_KEY}`)).data.results;
+    const videogames = [...videogamesDb, ...videogamesApi ].slice(0,15)
+    return videogames
 
 }
 

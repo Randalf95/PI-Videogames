@@ -6,6 +6,7 @@ export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
 export const FILTER_BY_SOURCE = 'FILTER_BY_SOURCE'
 export const ORDER_BY_ALPHABET = 'ORDER_BY_ALPHABET'
 export const ORDER_BY_RATING = 'ORDER_BY_RATING'
+export const GET_VIDEOGAMES_BY_NAME = 'GET_VIDEOGAMES_BY_NAME'
 /* export const GET_VIDEOGAME_BY_ID = 'GET_VIDEOGAME_BY_ID'
 export const ADD_VIDEOGAME = 'CREATE_VIDEOGAME' */
 //
@@ -24,6 +25,23 @@ export const getVideogames= ()=>{
 
     }
 };
+
+export const getVideogamesByName = (name) => {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            const data = response.data
+            return dispatch({
+                type: GET_VIDEOGAMES_BY_NAME,
+                payload: data,
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+};
+
 
 export const getGenres= ()=>{
     return async function (dispatch) {

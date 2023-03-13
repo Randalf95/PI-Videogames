@@ -1,4 +1,4 @@
-import { ADD_VIDEOGAME, FILTER_BY_GENRE, FILTER_BY_SOURCE, GET_GENRES, GET_VIDEOGAMES, ORDER_BY_ALPHABET, ORDER_BY_RATING } from './actions'
+import { ADD_VIDEOGAME, FILTER_BY_GENRE, FILTER_BY_SOURCE, GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_NAME, ORDER_BY_ALPHABET, ORDER_BY_RATING } from './actions'
 const initialState = {
     videogames: [],
     genres: [],
@@ -17,6 +17,12 @@ function reducer(state = initialState, action) {
                 ...state,
                 genres: action.payload
             };
+        case GET_VIDEOGAMES_BY_NAME:
+            return {
+                ...state,
+                videogames: action.payload
+            }
+        ;
         case FILTER_BY_GENRE:
             return {
                 ...state,
@@ -55,7 +61,8 @@ function reducer(state = initialState, action) {
                 action.payload === 'LOW RATING'? 
                 [...state.allVideogames].sort((a,b)=> a.rating - b.rating)
                 : [...state.allVideogames].sort((a,b) => b.rating - a.rating)
-            }
+            };
+        
 
 
         /* case ORDER_RATING:
