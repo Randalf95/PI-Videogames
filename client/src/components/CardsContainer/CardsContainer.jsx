@@ -42,17 +42,22 @@ const CardsContainer = () => {
 
     const handleGenreFilter = (e) => {
         dispatch(filterByGenre(e.target.value))
+        e.target.value='Genre'
     }
     const handleSourceFilter =  (e) => {
         dispatch(filterBySource(e.target.value))
+        e.target.value='Source'
     }
 
     const handleRatingOrder = (e) => {
         dispatch(orderByRating(e.target.value))
+        e.target.value='Rating'
     }
 
     const handleAlphabetOrder = (e) => {
         dispatch(orderByAlphabet(e.target.value))
+        e.target.value='Alphabet'
+
     }
 
     const handleOnClick = (e) => {
@@ -68,7 +73,7 @@ const CardsContainer = () => {
             />
 
             <select onChange={handleGenreFilter}>
-                <option>Genre</option>
+                <option value='Genre'>Genre</option>
                 {genres.map((g, i) =>
 
                 (<option key={i} value={g.name}>
@@ -77,21 +82,21 @@ const CardsContainer = () => {
                 )}
             </select>
             <select onChange={handleSourceFilter}>
-                <option>Source</option>
+                <option value='Source'>Source</option>
                 <option value='API'>API</option>
                 <option value= 'DB'>DB</option>
             </select>
             <select onChange={handleRatingOrder}>
-                <option>Rating</option>
+                <option value='Rating'>Rating</option>
                 <option value='LOW RATING'>LOW RATING</option>
                 <option value= 'HIGH RATING'>HIGH RATING</option>
             </select>
             <select onChange={handleAlphabetOrder}>
-                <option>Alphabet</option>
+                <option value='Alphabet'>Alphabet</option>
                 <option value='A-Z'>A-Z</option>
-                <option value='desc'>Z-A</option>
+                <option value='Z-A'>Z-A</option>
             </select>
-            <button onClick={handleOnClick}>Reset Filters</button>
+            <button onClick={handleOnClick}>All Videogames</button>
 
             {currentItems.map(v => {
                 return (

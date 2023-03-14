@@ -1,100 +1,146 @@
-import {Link} from 'react-router-dom';
-import {useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 /* import {useDispatch} from 'react-redux'; */
 /* import { createVideogame } from '../../redux/actions'; */
 
 const Form = () => {
+    const genres = useSelector(state => state.genres)
+    const platforms = ['Sega', 'Family Gameboy', 'Nintendo DS', 'Nintendo 3DS', 'Nintendo Switch', 'PlayStation One', 'PlayStation 2', 'PlayStation 3', 'PlayStation 4', 'PlayStation 5', 'MacOs', 'Linux', 'Xbox One', 'Xbox Series S/X']
     const [form, setForm] = useState({
-        name:'',
-        background_image:'',
-        description:'',
-        platforms:'',
-        released:'',
-        genres:[2],
-        rating: 5.5,
+        name: '',
+        background_image: '',
+        description: '',
+        platforms: [],
+        released: '',
+        genres: [],
+        rating: 0,
     })
     const [errors, setErrors] = useState({
-        name:'',
-        background_image:'',
-        description:'',
-        platforms:'',
-        released:'',
-        genres:'',
+        name: '',
+        background_image: '',
+        description: '',
+        platforms: '',
+        released: '',
+        genres: '',
         rating: '',
     })
 
-const onHandleChange = (e) => {
-validate({...form, [e.target.name]: e.target.value})
-setForm({...form, [e.target.name]: e.target.value})
-}
+    const onHandleChange = (e) => {
+        validate({ ...form, [e.target.name]: e.target.value })
+        setForm({ ...form, [e.target.name]: e.target.value })
+    }
+    /* const onHandleChange = (e) => {
+        if (e.target.name === 'rating') {
+          validate({ ...form, [e.target.name]: parseFloat(e.target.value) })
+          setForm({ ...form, [e.target.name]: parseFloat(e.target.value) });
+        } else {
+          validate({ ...form, [e.target.name]: e.target.value })
+          setForm({ ...form, [e.target.name]: e.target.value });
+        }
+      } */
+    const onHandleCheckbox = (e) => {
+        if (form.genres.includes(e.target.id)) {
+            validate({ ...form, [e.target.name]: form.genres.filter(g => g !== e.target.id) })
+            setForm({ ...form, [e.target.name]: form.genres.filter(g => g !== e.target.id) })
+        }
+        else
+            setForm({ ...form, [e.target.name]: [...form.genres, e.target.id] })
+    }
 
-const validate = (form) => {
-if (/^(https:|http:|www\.)\S*/.test(form.background_image)){
-    console.log('La URL es correcta')
-}
-else console.log('La url es incorrecta')
-}
-/* const dispatch = useDispatch(); */
+    const onHandlePlatforms= (e) => {
+        if (form.platforms.includes(e.target.value)) {
+            validate({...form, [e.target.name]: form.platforms.filter(p => p!== e.target.value)})
+            setForm({...form, [e.target.name]: form.platforms.filter(p => p!== e.target.value)})
+        }
+        else setForm({...form, [e.target.name] : [...form.platforms, e.target.value]})
+    }
+    const validate = (form) => {
+        if (/^(https:|http:|www\.)\S*/.test(form.background_image)) {
+            console.log('La URL es correcta')
+        }
+        else console.log('La url es incorrecta')
+    }
+    /* const dispatch = useDispatch(); */
 
-const handleSubmit =  (e) => {
-e.preventDefault();
-
- axios.post('http://localhost:3001/videogames', (form))
- .then(res => alert(res.data))
- .catch(err => alert(err))
-setForm({
-    name:'',
-    background_image:'',
-    description:'',
-    platforms:'',
-    released:'',
-    genres:[2],
-    rating: 5.5,
-})
-}
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(form)
+        axios.post('http://localhost:3001/videogames', (form))
+            .then(res => alert(res.data))
+            .catch(err => alert(err))
+        setForm({
+            name: '',
+            background_image: '',
+            description: '',
+            platforms: [],
+            released: '',
+            genres: [],
+            rating: 0,
+        })
+    }
 
     return (
         <>
-        <Link to='/home'>Volver a Home</Link>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Name</label>
-                <input type='text' name='name' value={form.name} onChange={onHandleChange}/>
-            </div>
-            <div>
-                <label>URL Image</label>
-                <input type='text' name='background_image' value={form.background_image} onChange={onHandleChange}/>
-            </div>
-            <div>
-                <label>Description</label>
-                <input type='text' name='description' value={form.description} onChange={onHandleChange}/>
-            </div>
-            <div>
-                <label>Platforms</label>
-                <input type='text' name='platforms' value={form.platforms} onChange={onHandleChange}/>
-            </div>
-            <div>
-                <label>Released on</label>
-                <input type='text' name='released' value={form.released} onChange={onHandleChange}/>
-                <span>dd-mm-yyyy</span>
-            </div>
-            {/* <div>
+            <Link to='/home'>Volver a Home</Link>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Name</label>
+                    <input type='text' name='name' value={form.name} onChange={onHandleChange} />
+                </div>
+                <div>
+                    <label>URL Image</label>
+                    <input type='text' name='background_image' value={form.background_image} onChange={onHandleChange} />
+                </div>
+                <div>
+                    <label>Description</label>
+                    <input type='text' name='description' value={form.description} onChange={onHandleChange} />
+                </div>
+                {/* <div>
+                    <label>Platforms</label>
+                    <input type='text' name='platforms' value={form.platforms} onChange={onHandleChange} />
+                </div> */}
+                <div>
+                    <label>Released on</label>
+                    <input type='text' name='released' value={form.released} onChange={onHandleChange} />
+                    <span>dd-mm-yyyy</span>
+                </div>
+                <div>
+                    <label>Genres</label>
+                    {genres.map((g, i) => (
+                        <div key={i}>
+                            <input type="checkbox" id={g.id} name='genres' value={g.name} onClick={onHandleCheckbox} />
+                            <label>{g.name}</label>
+                        </div>
+                    ))}
+
+                </div>
+                <div>
+                    <label>Platforms</label>
+                    {platforms.map((p, i) =>(
+                        <div key={i}>
+                            <input type='checkbox' name='platforms' value={p} onClick={onHandlePlatforms}/>
+                            <label>{p}</label>
+                        </div>
+                    ))}
+                </div>
+                <div>
                 <label>Rating</label>
-                <input type='number' name='rating' form={form.rating} onChange={onHandleChange}/>
-            </div> tengo el rating hardcodeado*/}
-            {/* <div>
+                <input type='number' name='rating' value={form.rating} onChange={onHandleChange}/>
+                </div>
+                {/* <div>
                 <label>Genres</label>
                 <input type='text' name='genres' form={form.genres} onChange={onHandleChange}/>
             </div> tengo el form.genres hardcodeado
  */}
-            <button type='submit'>Create Videogame</button>
-            
-            
-            
-            
-        </form>
+                <button type='submit'>Create Videogame</button>
+
+
+
+
+            </form>
         </>
     )
 }

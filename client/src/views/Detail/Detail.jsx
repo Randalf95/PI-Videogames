@@ -29,8 +29,8 @@ const Detail = () => {
       <h2>{videogame.id}</h2>
       {/* <h2>{videogame.platforms}</h2> */
       }
-      {videogame.created? 
-      <h2>{videogame.description}</h2>:
+      {/* videogame.created? 
+      <h2>{videogame.description}</h2>: */
       <h2 dangerouslySetInnerHTML={{ __html: videogame.description }}></h2>
       }
       
@@ -41,14 +41,40 @@ const Detail = () => {
         <h2 >{g.name}</h2>
       </div>)
       )}
-      {typeof(videogame.platforms)==='string'? 
-      <h2>{videogame.platforms}</h2>:
+ 
+      
+       {videogame.platforms?.map((p, y) =>
+        typeof p === 'object' ? (
+          <div key={y}>
+            <h2>{p.platform.name}</h2>
+          </div>
+        ) : (
+          <div key={y}>
+            <h2>{p}</h2>
+          </div>
+        )
+      )}
+     {/*  {typeof videogame.platforms[0] ==='object'?
       videogame.platforms?.map((p, j) =>
 
       (<div key={j}>
         <h2 >{p.platform.name}</h2>
       </div>)
-      )}
+      ):
+      videogame.platforms?.map((p, y)=>
+      (<div key={y}>
+        <h2>{p}</h2>
+      </div>))
+      
+      } */}
+      {/* {typeof videogame.platforms[0]==='string'?
+      <h2>{videogame.platforms[0]}</h2>:
+      videogame.platforms?.map((p, j) =>
+
+      (<div key={j}>
+        <h2 >{p.platform.name}</h2>
+      </div>)
+      )} */}
       {/* <h2>{videogame.genres}</h2> */}
       <h2>Rating: {videogame.rating}</h2>
       <img src={videogame.background_image} alt={`imagen de ${videogame.name}`} width={400} />
