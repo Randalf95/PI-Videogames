@@ -1,12 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import validation from './validation';
+import styles from './Form.module.css';
+import { getGenres } from '../../redux/actions';
+import { useEffect } from 'react';
 
 /* import {useDispatch} from 'react-redux'; */
 /* import { createVideogame } from '../../redux/actions'; */
-
+//
 const Form = () => {
+    const dispatch = useDispatch();
+    const navigate=useNavigate();
+    useEffect(() => { dispatch(getGenres()) }, [dispatch])
     const genres = useSelector(state => state.genres)
     const platforms = ['Sega', 'Family Gameboy', 'Nintendo DS', 'Nintendo 3DS', 'Nintendo Switch', 'PlayStation One', 'PlayStation 2', 'PlayStation 3', 'PlayStation 4', 'PlayStation 5', 'MacOs', 'Linux', 'Xbox One', 'Xbox Series S/X']
     const [form, setForm] = useState({
@@ -28,8 +35,12 @@ const Form = () => {
         rating: '',
     })
 
+    const backToHome=()=>{
+        navigate('/home')
+     }
+
     const onHandleChange = (e) => {
-        validate({ ...form, [e.target.name]: e.target.value })
+        setErrors(validation({ ...form, [e.target.name]: e.target.value }))
         setForm({ ...form, [e.target.name]: e.target.value })
     }
     /* const onHandleChange = (e) => {
@@ -41,28 +52,47 @@ const Form = () => {
           setForm({ ...form, [e.target.name]: e.target.value });
         }
       } */
-    const onHandleCheckbox = (e) => {
+    /* const onHandleCheckbox = (e) => {
         if (form.genres.includes(e.target.id)) {
-            validate({ ...form, [e.target.name]: form.genres.filter(g => g !== e.target.id) })
+            
+            setErrors(validation({ ...form, [e.target.name]: form.genres.filter(g => g !== e.target.id) }))
             setForm({ ...form, [e.target.name]: form.genres.filter(g => g !== e.target.id) })
         }
         else
+            setErrors(validation({ ...form, [e.target.name]: [...form.genres, e.target.id] }))
             setForm({ ...form, [e.target.name]: [...form.genres, e.target.id] })
+    } esto funciona */
+    const onHandleCheckbox = (e) => {
+        if (form.genres.includes(e.target.id)) {
+            setErrors(validation({ ...form, [e.target.name]: form.genres.filter(g => g !== e.target.id) }))
+            setForm({ ...form, [e.target.name]: form.genres.filter(g => g !== e.target.id) })
+        } else {
+            setErrors(validation({ ...form, [e.target.name]: [...form.genres, e.target.id] }))
+            setForm({ ...form, [e.target.name]: [...form.genres, e.target.id] })
+        }
     }
 
-    const onHandlePlatforms= (e) => {
+    const onHandlePlatforms = (e) => {
         if (form.platforms.includes(e.target.value)) {
-            validate({...form, [e.target.name]: form.platforms.filter(p => p!== e.target.value)})
-            setForm({...form, [e.target.name]: form.platforms.filter(p => p!== e.target.value)})
+            setErrors(validation({ ...form, [e.target.name]: form.platforms.filter(p => p !== e.target.value) }))
+            setForm({ ...form, [e.target.name]: form.platforms.filter(p => p !== e.target.value) })
+        } else {
+            setErrors(validation({ ...form, [e.target.name]: [...form.platforms, e.target.value] }))
+            setForm({ ...form, [e.target.name]: [...form.platforms, e.target.value] })
         }
-        else setForm({...form, [e.target.name] : [...form.platforms, e.target.value]})
     }
-    const validate = (form) => {
-        if (/^(https:|http:|www\.)\S*/.test(form.background_image)) {
-            console.log('La URL es correcta')
-        }
-        else console.log('La url es incorrecta')
-    }
+
+    /*  const onHandlePlatforms= (e) => {
+         if (form.platforms.includes(e.target.value)) {
+             setErrors(validation({...form, [e.target.name]: form.platforms.filter(p => p!== e.target.value)}))
+             
+             setForm({...form, [e.target.name]: form.platforms.filter(p => p!== e.target.value)})
+         }
+         else 
+         setErrors(validation({...form, [e.target.name] : [...form.platforms, e.target.value]}))
+         setForm({...form, [e.target.name] : [...form.platforms, e.target.value]})
+     } esto funciona*/
+
     /* const dispatch = useDispatch(); */
 
     const handleSubmit = (e) => {
@@ -80,23 +110,28 @@ const Form = () => {
             genres: [],
             rating: 0,
         })
+        backToHome();
     }
 
     return (
-        <>
-            <Link to='/home'>Volver a Home</Link>
-            <form onSubmit={handleSubmit}>
+
+        <div className={styles.body}>
+            <Link to='/home'><button className={styles.button}>Back to Home</button></Link>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <div>
                     <label>Name</label>
-                    <input type='text' name='name' value={form.name} onChange={onHandleChange} />
+                    <input type='text' name='name' value={form.name} onChange={onHandleChange} className={errors.name && styles.warning} autoComplete='off' />
+                    {errors.name && <p className={styles.danger}>{errors.name}</p>}
                 </div>
                 <div>
                     <label>URL Image</label>
-                    <input type='text' name='background_image' value={form.background_image} onChange={onHandleChange} />
+                    <input type='text' name='background_image' value={form.background_image} onChange={onHandleChange} className={errors.background_image && styles.warning} autoComplete='off'/>
+                    {errors.background_image && <p className={styles.danger}>{errors.background_image}</p>}
                 </div>
                 <div>
                     <label>Description</label>
-                    <input type='text' name='description' value={form.description} onChange={onHandleChange} />
+                    <input type='text' name='description' value={form.description} onChange={onHandleChange} className={errors.description && styles.warning} autoComplete='off' />
+                    {errors.description && <p className={styles.danger}>{errors.description}</p>}
                 </div>
                 {/* <div>
                     <label>Platforms</label>
@@ -104,44 +139,51 @@ const Form = () => {
                 </div> */}
                 <div>
                     <label>Released on</label>
-                    <input type='text' name='released' value={form.released} onChange={onHandleChange} />
-                    <span>dd-mm-yyyy</span>
+                    <input type='text' name='released' value={form.released} onChange={onHandleChange} className={errors.released && styles.warning} autoComplete='off'/>
+                    {errors.released && <p className={styles.danger}>{errors.released}</p>}
                 </div>
                 <div>
-                    <label>Genres</label>
+                    <label>Rating</label>
+                    <input type='number' name='rating' min='1' max='5' step='0.1' value={form.rating} onChange={onHandleChange} className={`${errors.rating && styles.warning} ${styles.rating}`} />
+                    {errors.rating && <p className={styles.danger}>{errors.rating}</p>}
+                </div>
+                <div className={styles.genresContainer}>
+                    {/* <label>Genres</label> */}
                     {genres.map((g, i) => (
-                        <div key={i}>
+                        <div key={i} className={styles.genreItem}>
                             <input type="checkbox" id={g.id} name='genres' value={g.name} onClick={onHandleCheckbox} />
                             <label>{g.name}</label>
                         </div>
                     ))}
-
+                    {errors.genres && <p className={styles.danger}>{errors.genres}</p>}
                 </div>
-                <div>
-                    <label>Platforms</label>
-                    {platforms.map((p, i) =>(
+                <div className={styles.platformsSection}>
+                    {/* <label>Platforms</label> */}
+                    {platforms.map((p, i) => (
                         <div key={i}>
-                            <input type='checkbox' name='platforms' value={p} onClick={onHandlePlatforms}/>
+                            <input type='checkbox' name='platforms' value={p} onClick={onHandlePlatforms} />
                             <label>{p}</label>
                         </div>
                     ))}
+                    {errors.platforms && <p className={styles.danger} >{errors.platforms}</p>}
                 </div>
-                <div>
-                <label>Rating</label>
-                <input type='number' name='rating' value={form.rating} onChange={onHandleChange}/>
-                </div>
+                
                 {/* <div>
                 <label>Genres</label>
                 <input type='text' name='genres' form={form.genres} onChange={onHandleChange}/>
             </div> tengo el form.genres hardcodeado
  */}
-                <button type='submit'>Create Videogame</button>
+                {!form.name || Object.entries(errors).length > 0 ?
+                    <button disabled className={styles.buttonDisable}>Create Videogame</button> :
+                    <button type='submit' className={styles.buttonCreate}>Create Videogame</button>
+                }
 
 
 
 
             </form>
-        </>
+        </div>
+
     )
 }
 

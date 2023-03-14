@@ -4,8 +4,206 @@
   }
   
   .danger {
-    font-size: 10px;
+    font-size: 13px;
     color: red;
     margin-left: 10em;
+    text-align: center;
   }
   
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    font-size: 18px;
+  }
+  
+  .form input[type='text'], 
+  .form select {
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid gray;
+    font-size: 18px;
+    font-family: 'Arial';
+    transition: border-bottom 0.3s;
+  }
+  
+  .form input[type='text']:focus, 
+  .form select:focus {
+    border-bottom: 2px solid blue;
+    outline: none;
+  }
+  
+  .form textarea {
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid gray;
+    font-size: 18px;
+    font-family: 'Arial';
+    transition: border-bottom 0.3s;
+  }
+  
+  .form textarea:focus {
+    border-bottom: 2px solid blue;
+    outline: none;
+  }
+  
+  .form label {
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Arial';
+  }
+  
+/*   .form button[type='submit'] {
+    margin: 20px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: 'Arial';
+    cursor: pointer;
+    transition: background-color 0.3s;
+  } */
+  
+/*   .form button[type='submit']:hover {
+    background-color: darkblue;
+  } */
+
+  .genresContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 5px;
+  }
+  
+  .genreItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    font-size: 18px;
+    font-family: 'Arial';
+  }
+  
+  .platformsSection {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    grid-row-gap: 40px;
+  }
+  
+  .body {
+    /* background-image: url('https://p4.wallpaperbetter.com/wallpaper/979/532/21/video-games-landscape-dauntless-videogame-trees-wallpaper-preview.jpg'); */
+    background-image: url('https://www.pockettactics.com/wp-content/uploads/2021/10/best-switch-adventure-games-8.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+
+.form input[type='number'], 
+.form input[type='text'], 
+.form select, 
+.form textarea {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgb(10, 10, 10);
+}
+
+input[type="checkbox"] {
+  opacity: 0.5;
+  background-color:  rgba(255, 255, 255, 0.2);
+}
+
+.button {
+  background-color:  #4CAF50;
+  border: none;
+  color: rgb(41, 36, 36);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  opacity: 0.9;
+  border-radius: 5px;
+}
+
+.button:hover {
+  opacity: 1.0;
+}
+
+input[name="rating"] {
+  margin: 10px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid gray;
+  font-size: 18px;
+  font-family: 'Arial';
+  transition: border-bottom 0.3s;
+}
+ 
+
+
+/* Estilos para el botón de create videogame */
+.buttonCreate {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.buttonCreate:hover {
+  background-color: #45a049;
+  color:black;
+  transform: scale(1.2)
+}
+
+.buttonDisable {
+
+    background-color: #505951;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    opacity:0.5
+  
+}
+
+.platforms-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

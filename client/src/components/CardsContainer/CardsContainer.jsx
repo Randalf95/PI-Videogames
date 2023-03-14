@@ -41,26 +41,31 @@ const CardsContainer = () => {
     };
 
     const handleGenreFilter = (e) => {
+        setCurrentPage(1)
         dispatch(filterByGenre(e.target.value))
         e.target.value='Genre'
     }
     const handleSourceFilter =  (e) => {
+        setCurrentPage(1)
         dispatch(filterBySource(e.target.value))
         e.target.value='Source'
     }
 
     const handleRatingOrder = (e) => {
+        setCurrentPage(1)
         dispatch(orderByRating(e.target.value))
         e.target.value='Rating'
     }
 
     const handleAlphabetOrder = (e) => {
+        setCurrentPage(1)
         dispatch(orderByAlphabet(e.target.value))
         e.target.value='Alphabet'
 
     }
 
     const handleOnClick = (e) => {
+        setCurrentPage(1)
         dispatch(getVideogames())
     }
 
