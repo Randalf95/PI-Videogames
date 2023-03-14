@@ -1,0 +1,32 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .page {
+    margin: 0 10px;
+  }
+  
+  .activePage button {
+    background-color: #28333f;
+    color: #fff;
+    opacity: 0.8;
+    border: none;
+    border-radius: 10%;
+    padding: 10px;
+  }
+/*   .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .page {
+    margin: 0px 5px;
+  }
+  
+  .activePage {
+    opacity: 0.8;
+  } */

@@ -69,7 +69,7 @@ const CardsContainer = () => {
         dispatch(getVideogames())
     }
 
-    return (
+   /*  return (
         <div className={style.container}>
             <Pagination
                 data={videogames}
@@ -116,7 +116,56 @@ const CardsContainer = () => {
             })}
 
         </div>
-    );
+    ); */
+    return (
+        <div className={style.container}>
+          <div className={style.filters}>
+            <select onChange={handleGenreFilter}>
+              <option value="Genre">Genre</option>
+              {genres.map((g, i) => (
+                <option key={i} value={g.name}>
+                  {g.name}
+                </option>
+              ))}
+            </select>
+            <select onChange={handleSourceFilter}>
+              <option value="Source">Source</option>
+              <option value="API">API</option>
+              <option value="DB">DB</option>
+            </select>
+            <select onChange={handleRatingOrder}>
+              <option value="Rating">Rating</option>
+              <option value="LOW RATING">LOW RATING</option>
+              <option value="HIGH RATING">HIGH RATING</option>
+            </select>
+            <select onChange={handleAlphabetOrder}>
+              <option value="Alphabet">Alphabet</option>
+              <option value="A-Z">A-Z</option>
+              <option value="Z-A">Z-A</option>
+            </select>
+            <button onClick={handleOnClick}>All Videogames</button>
+          </div>
+          <Pagination
+            data={videogames}
+            itemsPerPage={itemsPerPage}
+            onChangePage={handlePageChange}
+          />
+          <div className={style.cards}>
+            {currentItems.map((v) => (
+              <Card
+                key={v.id}
+                name={v.name}
+                id={v.id}
+                background_image={v.background_image}
+                genres={v.genres}
+                className={style.card}
+              />
+            ))}
+          </div>
+      
+          
+        </div>
+      );
 }
 
 export default CardsContainer;

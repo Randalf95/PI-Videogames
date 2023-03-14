@@ -5,20 +5,20 @@ import {useDispatch} from 'react-redux'
 import { getGenres, getVideogames } from '../../redux/actions';
 import SearchBar from '../../components/SearchBar/SearchBar.jsx';
 
-
+import styles from './Home.module.css';
 function Home (){
     const dispatch = useDispatch()
     useEffect(()=>{dispatch(getGenres())},[dispatch])
     useEffect(()=>{dispatch(getVideogames())},[dispatch]);
     
     return (
-        <>
-        
-        
-        <Link to='/create'>Crear Videojuego</Link>
-        <SearchBar/>
-        <CardsContainer/>
-        </>
+        <div className={styles.homeContainer}>
+            <Link to='/create'><button className={styles.createButton}>Crear Videojuego</button></Link>
+            <SearchBar/>
+            <div className={styles.cardsContainer}>
+                <CardsContainer/>
+            </div>
+        </div>
     )
 };
 
