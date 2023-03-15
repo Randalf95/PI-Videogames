@@ -7,6 +7,7 @@ export const FILTER_BY_SOURCE = 'FILTER_BY_SOURCE'
 export const ORDER_BY_ALPHABET = 'ORDER_BY_ALPHABET'
 export const ORDER_BY_RATING = 'ORDER_BY_RATING'
 export const GET_VIDEOGAMES_BY_NAME = 'GET_VIDEOGAMES_BY_NAME'
+export const DELETE_VIDEOGAME = 'DELETE_VIDEOGAME'
 /* export const GET_VIDEOGAME_BY_ID = 'GET_VIDEOGAME_BY_ID'
 export const ADD_VIDEOGAME = 'CREATE_VIDEOGAME' */
 //
@@ -84,6 +85,13 @@ export const orderByRating = (payload) => {
     return {
         type: ORDER_BY_RATING,
         payload
+    }
+}
+
+export const deleteVideogame = (id) => {
+    return {
+        type: DELETE_VIDEOGAME,
+        payload: id
     }
 }
 

@@ -31,11 +31,13 @@ const CardsContainer = () => {
     const genres = useSelector(state => state.genres)
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
+    
     const itemsPerPage = 15;
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = videogames.slice(indexOfFirstItem, indexOfLastItem);
 
+    
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
@@ -119,6 +121,7 @@ const CardsContainer = () => {
     ); */
     return (
         <div className={style.container}>
+            
           <div className={style.filters}>
             <select onChange={handleGenreFilter}>
               <option value="Genre">Genre</option>

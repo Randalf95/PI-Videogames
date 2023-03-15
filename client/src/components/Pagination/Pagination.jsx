@@ -73,14 +73,14 @@ const Pagination = ({ data, itemsPerPage, onChangePage }) => {
 
   return (
     <div className={style.pagination}>
-      <button onClick={handlePrevPage} disabled={currentPage === 1}>Prev</button>
+      <button onClick={handlePrevPage}  disabled={currentPage === 1}>Prev</button>
       {pages.map((page) => (
         <div
           key={page}
           className={page === currentPage ? style.activePage : style.page}
           onClick={() => handleClick(page)}
         >
-          <button>{page}</button>
+          <button classname={style.button}>{page}</button>
         </div>
       ))}
       <button onClick={handleNextPage} disabled={currentPage === pagesCount}>Next</button>
