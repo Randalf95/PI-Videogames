@@ -22,8 +22,8 @@ function Home() {
 
     return (
         <div className={styles.homeContainer}>
-            {isLoading && <div /* className={styles.loading} */>
-                <Loading/>
+            {isLoading && <div>
+                <Loading />
             </div>}
             {!isLoading &&
                 <div>

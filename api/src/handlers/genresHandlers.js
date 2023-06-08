@@ -1,4 +1,4 @@
-const { getGenres } = require('../controllers/genresControllers.js')
+const { getGenres } = require('../controllers/genresControllers.js');
 const getGenresHandler = async (req, res) => {
     try {
         const genres = await getGenres()
@@ -6,8 +6,7 @@ const getGenresHandler = async (req, res) => {
     }
     catch (error) {
         res.status(400).send({ error: error.message })
-    }
-
+    };
 };
 
 module.exports = { getGenresHandler };

@@ -14,7 +14,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin: 20px; */
     font-size: 18px;
   }
   
@@ -59,22 +58,6 @@
     font-family: 'Arial';
   }
   
-/*   .form button[type='submit'] {
-    margin: 20px;
-    padding: 10px;
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
-    font-family: 'Arial';
-    cursor: pointer;
-    transition: background-color 0.3s;
-  } */
-  
-/*   .form button[type='submit']:hover {
-    background-color: darkblue;
-  } */
 
   .genresContainer {
     display: flex;
@@ -109,7 +92,7 @@
   }
   
   .body {
-    /* background-image: url('https://p4.wallpaperbetter.com/wallpaper/979/532/21/video-games-landscape-dauntless-videogame-trees-wallpaper-preview.jpg'); */
+   
     background-image: url('https://www.pockettactics.com/wp-content/uploads/2021/10/best-switch-adventure-games-8.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -147,7 +130,7 @@ input[type="checkbox"] {
 }
 
 .button:hover {
-  opacity: 1.0;
+  transform: scale(1.1);
 }
 
 input[name="rating"] {
@@ -163,7 +146,7 @@ input[name="rating"] {
  
 
 
-/* Estilos para el botón de create videogame */
+
 .buttonCreate {
   background-color: #4CAF50;
   border: none;
@@ -195,7 +178,6 @@ input[name="rating"] {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    /* cursor: pointer */;
     border-radius: 4px;
     opacity:0.5
   

@@ -1,26 +1,28 @@
 .homeContainer {
-    /* background-color: rgb(116, 80, 25) ;*/
-    /* background-image: url("https://assets-prd.ignimgs.com/2021/12/30/36190303-image-7-1640880187142.png"); */
-    background-image: url('https://p4.wallpaperbetter.com/wallpaper/499/328/902/video-games-dauntless-videogame-wallpaper-preview.jpg');
+  background-image: url('https://p4.wallpaperbetter.com/wallpaper/499/328/902/video-games-dauntless-videogame-wallpaper-preview.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-    /* height: 100vh; */
 }
 
 .createButton {
-    background-color: rgba(43, 209, 126, 0.5);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  
+  background-color: rgba(43, 209, 126, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.createButton:hover {
+  transform: scale(1.2);
+  color: black;
+}
+
+
 .loading h1 {
-    color: white;
-    font-size: 36px;
-    font-weight: bold;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
 }

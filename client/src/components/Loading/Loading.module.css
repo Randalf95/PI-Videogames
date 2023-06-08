@@ -5,10 +5,9 @@
     width: 100%;
     height: 100%;
     background-image: url('https://p4.wallpaperbetter.com/wallpaper/499/328/902/video-games-dauntless-videogame-wallpaper-preview.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-/*     background-color: rgba(0, 0, 0, 0.2); */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
