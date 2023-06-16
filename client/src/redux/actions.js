@@ -12,7 +12,7 @@ export const DELETE_VIDEOGAME = 'DELETE_VIDEOGAME'
 export const getVideogames = () => {
     return async function (dispatch) {
         try {
-            const response = await axios.get("http://localhost:3001/videogames")
+            const response = await axios.get("https://pi-videogames-production-cc74.up.railway.app/videogames")
             const data = response.data
             return dispatch({
                 type: GET_VIDEOGAMES,
@@ -28,7 +28,7 @@ export const getVideogames = () => {
 export const getVideogamesByName = (name) => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            const response = await axios.get(`https://pi-videogames-production-cc74.up.railway.app/videogames?name=${name}`)
             const data = response.data
             return dispatch({
                 type: GET_VIDEOGAMES_BY_NAME,
@@ -45,7 +45,7 @@ export const getVideogamesByName = (name) => {
 export const getGenres = () => {
     return async function (dispatch) {
         try {
-            const response = await axios.get("http://localhost:3001/genres")
+            const response = await axios.get("https://pi-videogames-production-cc74.up.railway.app/genres")
             const data = response.data
             return dispatch({
                 type: GET_GENRES,

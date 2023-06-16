@@ -20,7 +20,7 @@ const Detail = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/videogames/${idVideogame}`)
+    fetch(`https://pi-videogames-production-cc74.up.railway.app/videogames/${idVideogame}`)
       .then((response) => response.json())
       .then((vg) => {
         setVideogame(vg);

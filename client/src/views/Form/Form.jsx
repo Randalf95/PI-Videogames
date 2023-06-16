@@ -65,7 +65,7 @@ const Form = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(form)
-        axios.post('http://localhost:3001/videogames', (form))
+        axios.post('https://pi-videogames-production-cc74.up.railway.app/videogames', (form))
             .then(res => alert(res.data))
             .catch(err => alert(err))
         setForm({
