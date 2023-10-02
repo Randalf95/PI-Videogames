@@ -27,3 +27,4 @@ const Card = ({ id, genres, background_image, name, rating }) => {
 };
 
 export default Card;
+//actualize node para deploy back.
